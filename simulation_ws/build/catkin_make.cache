@@ -1,2 +1,2 @@
-
+two_wheeled_robot/m2wr_description:two_wheeled_robot/my_worlds
 -DCATKIN_DEVEL_PREFIX=/home/filipaivars/Documents/Projects/robot_wall_follower/simulation_ws/devel -DCMAKE_INSTALL_PREFIX=/home/filipaivars/Documents/Projects/robot_wall_follower/simulation_ws/install -G Unix Makefiles
