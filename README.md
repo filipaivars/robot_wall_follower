@@ -4,6 +4,7 @@ a ROS robot that follows walls
 :warning: **develoment environment: Ubuntu 18.04.3 LTS**
 
 ## Directory structure
+```bash
 .
 |- catkin_ws
 |   |- build                        # build folder
@@ -46,6 +47,7 @@ a ROS robot that follows walls
 |   |   |   |   |   |- x_world.world
 |   |   |   |   |   |- w_world.world
 |   |   |   |   |   |- z_world.world
+```
 
 ## How to run
 
