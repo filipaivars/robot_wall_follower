@@ -1,2 +1,0 @@
-motion_plan
--DCATKIN_DEVEL_PREFIX=/home/filipaivars/Documents/Projects/robot_wall_follower/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/filipaivars/Documents/Projects/robot_wall_follower/catkin_ws/install -G Unix Makefiles

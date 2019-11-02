@@ -1,8 +1,0 @@
-prefix=/home/filipaivars/Documents/Projects/robot_wall_follower/catkin_ws/devel
-
-Name: motion_plan
-Description: Description of motion_plan
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/filipaivars/Documents/Projects/robot_wall_follower/catkin_ws/devel/lib 
-Requires: 

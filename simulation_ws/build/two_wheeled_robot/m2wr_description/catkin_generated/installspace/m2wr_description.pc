@@ -1,8 +1,0 @@
-prefix=/home/filipaivars/Documents/Projects/robot_wall_follower/simulation_ws/install
-
-Name: m2wr_description
-Description: Description of m2wr_description
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/filipaivars/Documents/Projects/robot_wall_follower/simulation_ws/install/lib 
-Requires: 

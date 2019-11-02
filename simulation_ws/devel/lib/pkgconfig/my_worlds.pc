@@ -1,8 +1,0 @@
-prefix=/home/filipaivars/Documents/Projects/robot_wall_follower/simulation_ws/devel
-
-Name: my_worlds
-Description: Description of my_worlds
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/filipaivars/Documents/Projects/robot_wall_follower/simulation_ws/devel/lib 
-Requires: 
