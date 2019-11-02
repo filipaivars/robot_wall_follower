@@ -1,6 +1,8 @@
 # robot_wall_follower
 a ROS robot that follows walls
 
+:warning: **develoment environment: Ubuntu 18.04.3 LTS**
+
 ## Run RViz
 ```bash
 cd simulation_ws
