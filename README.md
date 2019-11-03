@@ -61,7 +61,7 @@ To see detailed information about this, please read the report
 ## How to run
 
 ### Setup the environment
-First things first! We need to first setup the environment by building each one of the workspaces : `catkin_ws` and `simulation_ws` as follows:
+First things first! We need to first setup the environment by building each one of the workspaces `catkin_ws` and `simulation_ws` as follows:
 
 ```bash
 cd catkin_ws
