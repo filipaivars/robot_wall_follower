@@ -9,8 +9,9 @@ This is a ROS reactive two-wheeled robot which goal is to follow walls.
 * Gazebo 9.0.0
 
 ## The wall-following algorithm
-In a nutshell, the algorithm to follow walls can be described by the table:
-#### todo table
+In a nutshell, the algorithm to follow walls can be described by the tables:
+![state machine table](http://github.com/filipaivars/robot_wall_follower/images/state_achine.png)
+![actions table](http://github.com/filipaivars/robot_wall_follower/images/actions.png)
 To see detailed information about this, please read the report
 
 ## Directory structure
@@ -92,7 +93,7 @@ Launch a new terminal and run the following commands.
 ```bash
 cd simulation_ws
 source devel/setup.bash
-``` 
+```
 The command to spawn the robot as the form:
 `roslaunch m2wr_description spawn.launch [<coord_to_spawn>]`
 
@@ -128,4 +129,3 @@ source devel/setup.bash
 export LC_NUMERIC="en_US.UTF-8"
 roslaunch m2wr_description rviz.launch
 ```
-
