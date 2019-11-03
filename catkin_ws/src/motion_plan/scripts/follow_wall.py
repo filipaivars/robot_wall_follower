@@ -31,7 +31,7 @@ def find_wall():
 
 def turn_left():
     msg = Twist()
-    msg.angular.z = -0.3
+    msg.angular.z = -0.7
 
     return msg
 
@@ -53,7 +53,8 @@ def take_action():
 
     regions = regions_
 
-    d = 1.5
+    d = 1
+    d_min = 0.8
     if regions['front'] > d and regions['fleft'] > d and regions['fright'] > d:
         state_description = 'case 1 - nothing'
         change_state(0)
