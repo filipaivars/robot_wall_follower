@@ -48,15 +48,12 @@ To see detailed information about this, please read the report
 |   |   |   |   |- launch
 |   |   |   |   |   |- launch_world.launch
 |   |   |   |   |- worlds
-|   |   |   |   |   |- world01.world
-|   |   |   |   |   |- world02.world
-|   |   |   |   |   |- world03.world
 |   |   |   |   |   |- i_world.world
 |   |   |   |   |   |- l_world.world
 |   |   |   |   |   |- t_world.world
-|   |   |   |   |   |- x_world.world
 |   |   |   |   |   |- w_world.world
-|   |   |   |   |   |- z_world.world
+|   |   |   |   |   |- x_world.world
+|   |   |   |   |   |- x_big_world.world
 ```
 
 ## How to run
@@ -69,17 +66,6 @@ cd catkin_ws
 catkin_make
 cd ../simulation_ws
 catkin_make
-```
-
-### Run RViz - optional
-RViz will be a good tool to check the laser scan readings. Even though it's not a simulation tool, it is useful to make sure that everything is working as expected.
-This is not required to run the project.
-
-```bash
-cd simulation_ws
-source devel/setup.bash
-export LC_NUMERIC="en_US.UTF-8"
-roslaunch m2wr_description rviz.launch
 ```
 
 ### Run Gazebo
@@ -96,7 +82,7 @@ You can launch a world using this command:
 
 For example:
 ```bash
-roslaunch my_worlds launch_world.launch z_world
+roslaunch my_worlds launch_world.launch w_world
 ```
 
 ### Place your robot in Gazebo world
@@ -110,14 +96,36 @@ source devel/setup.bash
 The command to spawn the robot as the form:
 `roslaunch m2wr_description spawn.launch [<coord_to_spawn>]`
 
+Default run:
+```bash
+roslaunch m2wr_description spawn.launch
+```
+
 For example:
 ```bash
-roslaunch m2wr_description spawn.launch y:=8
+roslaunch m2wr_description spawn.launch y:=7
 ```
 
 ### Run Motion Planner
-```bash
+Our wall-following algorithm is in the `follow_wall.py` file at the `catkin_ws` workspace and `motion_plan` package.
+After you run Gazebo and spawn the robot in it (see above sections), you're ready to run the script:
 
+```bash
+cd catkin_ws
+source devel/setup.bash
+rosrun motion_plan follow_wall.py
 ```
 
+### Run RViz - optional
+RViz will be a good tool to check the laser scan readings. Even though it's not a simulation tool, it is useful to make sure that everything is working as expected.
+To add the robot, add the model `RobotModel` and set the Fixed Frame in Global Options to `link_chassis`.
+To add the laser scan in order to track it, add the model `LaserScan` and select the topic `m2wr/laser/scan`.
+This is not required to run the project.
+
+```bash
+cd simulation_ws
+source devel/setup.bash
+export LC_NUMERIC="en_US.UTF-8"
+roslaunch m2wr_description rviz.launch
+```
 
