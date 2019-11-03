@@ -83,11 +83,11 @@ source devel/setup.bash
 ```
 You can launch a world using this command:
 
-`roslaunch my_worlds launch_world.launch <world_name>`
+`roslaunch my_worlds launch_world.launch world:=<world_name>`
 
 For example:
 ```bash
-roslaunch my_worlds launch_world.launch w_world
+roslaunch my_worlds launch_world.launch world:=w_world
 ```
 
 ### Place your robot in Gazebo world
