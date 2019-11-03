@@ -10,8 +10,8 @@ This is a ROS reactive two-wheeled robot which goal is to follow walls.
 
 ## The wall-following algorithm
 In a nutshell, the algorithm to follow walls can be described by the tables:
-![state machine table](http://github.com/filipaivars/robot_wall_follower/images/state_achine.png)
-![actions table](http://github.com/filipaivars/robot_wall_follower/images/actions.png)
+![state machine table](https://github.com/filipaivars/robot_wall_follower/blob/master/images/state_machine.png)
+![actions table](https://github.com/filipaivars/robot_wall_follower/blob/master/images/actions.png)
 To see detailed information about this, please read the report
 
 ## Directory structure
