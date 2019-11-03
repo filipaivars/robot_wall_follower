@@ -18,7 +18,9 @@ state_ = 0
 state_dict_ = {
     0: 'find the wall',
     1: 'turn left',
-    2: 'follow the wall'
+    2: 'follow the wall',
+    3: 'fix follow the wall - left',
+    4: 'fix follow the wall - right'
 }
 
 
@@ -41,6 +43,22 @@ def follow_wall():
 
     return msg
 
+def fix_follow_wall_left():
+    # soft turn left to ensure maximum distance to wall
+    msg = Twist()
+    msg.linear.x = 0.2
+    msg.angular.z = -0.5
+
+    return msg
+
+def fix_follow_wall_right():
+    # soft turn right to ensure minimum distance to wall
+    msg = Twist()
+    msg.linear.x = 0.2
+    msg.angular.z = 0.5
+
+    return msg
+
 def change_state(state):
     global state_
 
@@ -55,29 +73,41 @@ def take_action():
 
     d = 1
     d_min = 0.8
-    if regions['front'] > d and regions['fleft'] > d and regions['fright'] > d:
+    if regions['front'] > d and regions['fleft'] > d and regions['fright'] > d and regions['right'] > d:
         state_description = 'case 1 - nothing'
         change_state(0)
-    elif regions['front'] < d and regions['fleft'] > d and regions['fright'] > d:
+    elif regions['front'] < d and regions['fleft'] > d and regions['fright'] > d and regions['right'] > d:
         state_description = 'case 2 - front'
         change_state(1)
-    elif regions['front'] > d and regions['fleft'] > d and regions['fright'] < d:
+    elif regions['front'] > d and regions['fleft'] > d and regions['fright'] < d and regions['right'] > d:
         state_description = 'case 3 - fright'
+        change_state(4)
+    elif regions['front'] > d and regions['fleft'] > d and regions['fright'] > d and regions['right'] < d and regions['right'] > d_min:
+        state_description = 'case 4.1 - right check'
         change_state(2)
+    elif regions['front'] > d and regions['fleft'] > d and regions['fright'] > d and regions['right'] < d and regions['right'] < d_min:
+        state_description = 'case 4.2 - right fix'
+        change_state(3)
+    elif regions['front'] > d and regions['fleft'] > d and regions['fright'] < d and regions['right'] < d and regions['right'] > d_min:
+        state_description = 'case 5.1 - fright right check'
+        change_state(2)
+    elif regions['front'] > d and regions['fleft'] > d and regions['fright'] < d and regions['right'] < d and regions['right'] < d_min:
+        state_description = 'case 5.2 - fright right fix'
+        change_state(3)
     elif regions['front'] > d and regions['fleft'] < d and regions['fright'] > d:
-        state_description = 'case 4 - fleft'
+        state_description = 'case 6 - fleft'
         change_state(0)
     elif regions['front'] < d and regions['fleft'] > d and regions['fright'] < d:
-        state_description = 'case 5 - front and fright'
+        state_description = 'case 7 - front and fright'
         change_state(1)
     elif regions['front'] < d and regions['fleft'] < d and regions['fright'] > d:
-        state_description = 'case 6 - front and fleft'
+        state_description = 'case 8 - front and fleft'
         change_state(1)
     elif regions['front'] < d and regions['fleft'] < d and regions['fright'] < d:
-        state_description = 'case 7 - front and fleft and fright'
+        state_description = 'case 9 - front and fleft and fright'
         change_state(1)
     elif regions['front'] > d and regions['fleft'] < d and regions['fright'] < d:
-        state_description = 'case 8 - fleft and fright'
+        state_description = 'case 10 - fleft and fright'
         change_state(0)
     else:
         state_description = 'unknown case'
@@ -113,6 +143,10 @@ def main():
             msg = find_wall()
         elif state_ == 1:
             msg = turn_left()
+        elif state_ == 3:
+            msg = fix_follow_wall_left()
+        elif state_ == 4:
+            msg = fix_follow_wall_right()
         elif state_ == 2:
             msg = follow_wall()
             pass
