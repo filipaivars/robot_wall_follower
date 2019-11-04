@@ -9,8 +9,10 @@ This is a ROS reactive two-wheeled robot which goal is to follow walls.
 * Gazebo 9.0.0
 
 ## The wall-following algorithm
-In a nutshell, the algorithm to follow walls can be described by the table:
-#### todo table
+In a nutshell, the algorithm to follow walls can be described by the tables:
+![state machine table](https://github.com/filipaivars/robot_wall_follower/blob/master/images/state_machine.png)
+![actions table](https://github.com/filipaivars/robot_wall_follower/blob/master/images/actions.png)
+
 To see detailed information about this, please read the report
 
 ## Directory structure
@@ -59,7 +61,7 @@ To see detailed information about this, please read the report
 ## How to run
 
 ### Setup the environment
-First things first! We need to first setup the environment by building each one of the workspaces : `catkin_ws` and `simulation_ws` as follows:
+First things first! We need to first setup the environment by building each one of the workspaces `catkin_ws` and `simulation_ws` as follows:
 
 ```bash
 cd catkin_ws
@@ -70,7 +72,9 @@ catkin_make
 
 ### Run Gazebo
 Gazebo is our simulation tool. Launch a new terminal.
+
 First we need to launch it with a world of our choice.
+
 You can check the available worlds in the directory structure section.
 
 ```bash
@@ -78,22 +82,25 @@ cd simulation_ws
 source devel/setup.bash
 ```
 You can launch a world using this command:
-`roslaunch my_worlds launch_world.launch <world_name>`
+
+`roslaunch my_worlds launch_world.launch world:=<world_name>`
 
 For example:
 ```bash
-roslaunch my_worlds launch_world.launch w_world
+roslaunch my_worlds launch_world.launch world:=w_world
 ```
 
 ### Place your robot in Gazebo world
 Now we need to place our robot inside the world we just launched above.
+
 Launch a new terminal and run the following commands.
 
 ```bash
 cd simulation_ws
 source devel/setup.bash
-``` 
+```
 The command to spawn the robot as the form:
+
 `roslaunch m2wr_description spawn.launch [<coord_to_spawn>]`
 
 Default run:
@@ -108,6 +115,7 @@ roslaunch m2wr_description spawn.launch y:=7
 
 ### Run Motion Planner
 Our wall-following algorithm is in the `follow_wall.py` file at the `catkin_ws` workspace and `motion_plan` package.
+
 After you run Gazebo and spawn the robot in it (see above sections), you're ready to run the script:
 
 ```bash
@@ -118,8 +126,11 @@ rosrun motion_plan follow_wall.py
 
 ### Run RViz - optional
 RViz will be a good tool to check the laser scan readings. Even though it's not a simulation tool, it is useful to make sure that everything is working as expected.
+
 To add the robot, add the model `RobotModel` and set the Fixed Frame in Global Options to `link_chassis`.
+
 To add the laser scan in order to track it, add the model `LaserScan` and select the topic `m2wr/laser/scan`.
+
 This is not required to run the project.
 
 ```bash
@@ -128,4 +139,3 @@ source devel/setup.bash
 export LC_NUMERIC="en_US.UTF-8"
 roslaunch m2wr_description rviz.launch
 ```
-
