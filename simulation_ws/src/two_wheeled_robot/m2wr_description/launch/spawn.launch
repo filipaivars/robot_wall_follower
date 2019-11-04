@@ -3,7 +3,7 @@
 
     <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find m2wr_description)/urdf/m2wr.xacro'" />
     
-    <arg name="x" default="0"/>
+    <arg name="x" default="7"/>
     <arg name="y" default="0"/>
     <arg name="z" default="0.5"/>
     

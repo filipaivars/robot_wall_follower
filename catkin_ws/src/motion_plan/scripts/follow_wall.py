@@ -3,10 +3,14 @@
 import rospy
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
+from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import Odometry
+from nav_msgs.msg import Path
 from tf import transformations
 
-pub = None
+pub_ = None
+path_ = Path()
+pub_path_ = None
 regions_ = {
     'right': 0,
     'fright': 0,
@@ -128,13 +132,26 @@ def callback_laser(msg):
 
     take_action()
 
+def callback_odom(data):
+    global path_, pub_path_
+
+    path_.header = data.header
+    pose = PoseStamped()
+    pose.header = data.header
+    pose.pose = data.pose.pose
+    path_.poses.append(pose)
+
+    pub_path_.publish(path_)
+
 def main():
-    global pub_, state_
+    global pub_, state_, pub_path_
 
     rospy.init_node('reading_laser')
 
     pub_ = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
     sub = rospy.Subscriber('m2wr/laser/scan', LaserScan, callback_laser)
+    rospy.Subscriber('/odom', Odometry, callback_odom)
+    pub_path_ = rospy.Publisher('/path', Path, queue_size=10)
 
     rate = rospy.Rate(20)
     while not rospy.is_shutdown():
