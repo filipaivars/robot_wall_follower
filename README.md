@@ -10,8 +10,8 @@ This is a ROS reactive two-wheeled robot which goal is to follow walls.
 
 ## The wall-following algorithm
 In a nutshell, the algorithm to follow walls can be described by the tables:
-![state machine table](https://github.com/filipaivars/robot_wall_follower/blob/master/images/state_machine.png)
-![actions table](https://github.com/filipaivars/robot_wall_follower/blob/master/images/actions.png)
+![state machine table](https://github.com/filipaivars/robot_wall_follower/blob/master/report/images/state_machine.png)
+![actions table](https://github.com/filipaivars/robot_wall_follower/blob/master/report/images/actions.png)
 
 To see detailed information about this, please read the report
 
@@ -19,43 +19,42 @@ To see detailed information about this, please read the report
 ```bash
 .
 |- catkin_ws
-|   |- build                        # build folder
-|   |- devel                        # compilation folder
+|   |- build                        
+|   |- devel                        
 |   |   |- ...
-|   |   |- setup.bash               # file to source for catkin_ws
+|   |   |- setup.bash               
 |   |   |- ...
 |   |- src
 |   |   |- motion_plan
 |   |   |   |- scripts
-|   |   |   |   |- follow_wall.py   # script to follow the wall
+|   |   |   |   |- follow_wall.py             # the wall-following algorithm script
 |   |   |   |   |- ...
 |- simulation_ws
-|   |- build                        # build folder
-|   |- devel                        # compilation folder
+|   |- build                        
+|   |- devel                        
 |   |   |- ...
-|   |   |- setup.bash               # file to source for catkin_ws
+|   |   |- setup.bash               
 |   |   |- ...
 |   |- src
 |   |   |- two_wheeled_robot
 |   |   |   |- m2wr_description
 |   |   |   |   |- launch
-|   |   |   |   |   |- rviz.launch  # script to launch RViz
-|   |   |   |   |   |- spawn.launch # script to spawn the robot into Gazebo
-|   |   |   |   |- urdf
+|   |   |   |   |   |- rviz.launch            # to launch rviz
+|   |   |   |   |   |- spawn.launch           # to place the robot in the world
+|   |   |   |   |- urdf                       # robot components
 |   |   |   |   |   |- m2wr.gazebo
 |   |   |   |   |   |- m2wr.xacro
 |   |   |   |   |   |- macros.xacro
 |   |   |   |   |   |- materials.xacro
 |   |   |   |- my_worlds
 |   |   |   |   |- launch
-|   |   |   |   |   |- launch_world.launch
-|   |   |   |   |- worlds
+|   |   |   |   |   |- launch_world.launch    # to launch gazebo
+|   |   |   |   |- worlds                     # gazebo worlds
 |   |   |   |   |   |- i_world.world
 |   |   |   |   |   |- l_world.world
 |   |   |   |   |   |- t_world.world
 |   |   |   |   |   |- w_world.world
 |   |   |   |   |   |- x_world.world
-|   |   |   |   |   |- x_big_world.world
 ```
 
 ## How to run
@@ -139,3 +138,6 @@ source devel/setup.bash
 export LC_NUMERIC="en_US.UTF-8"
 roslaunch m2wr_description rviz.launch
 ```
+
+## Online publication
+https://github.com/filipaivars/robot_wall_follower.git
